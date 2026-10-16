@@ -53,7 +53,10 @@ def get_completion_by_messages(messages, model="gpt-4o-mini", temperature=0, top
         max_tokens=max_tokens,
         n=1
     )
-    return response.choices[0].message.content
+    content = response.choices[0].message.content
+    if not content or not content.strip():
+        raise RuntimeError("The language model returned an empty response.")
+    return content
 
 
 # This function is for calculating the tokens given the "message"
