@@ -1,11 +1,17 @@
 import streamlit as st
 
+from helper_functions.utility import check_password
+
+
 # region <--------- Streamlit App Configuration --------->
 st.set_page_config(
     layout="centered",
     page_title="My Streamlit App"
 )
 # endregion <--------- Streamlit App Configuration --------->
+
+if not check_password():
+    st.stop()
 
 st.title("About this App")
 
